@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
     id("com.google.devtools.ksp")
+    alias(libs.plugins.kotlin.serialization)
 }
 
 android {
@@ -62,21 +63,20 @@ dependencies {
     /*********** Added dependencies *************/
     // Retrofit
     implementation(libs.retrofit)
-    implementation(libs.gson)
+    implementation(libs.retrofit.kotlinx.serialization)
+
+    implementation(libs.kotlinx.serialization.json)
 
     // Lifecycle
-    // ViewModel utilities for Compose
     implementation(libs.androidx.lifecycle.viewmodel.compose)
-    // LiveData
     implementation(libs.androidx.lifecycle.livedata.ktx)
 
     // Room
     implementation(libs.androidx.room.runtime)
-    // optional - Kotlin Extensions and Coroutines support for Room
     implementation(libs.androidx.room.ktx)
+    ksp(libs.androidx.room.compiler)
 
     // coil
     implementation(libs.coil.compose)
 
-    ksp(libs.androidx.room.compiler)
 }

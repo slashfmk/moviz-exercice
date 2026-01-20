@@ -1,7 +1,9 @@
 package com.oxygenik.moviz.retrofit
 
 import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
+@Serializable
 data class Movie(
     val adult: Boolean,
     val backdrop_path: String,
