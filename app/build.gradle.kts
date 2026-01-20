@@ -74,5 +74,9 @@ dependencies {
     implementation(libs.androidx.room.runtime)
     // optional - Kotlin Extensions and Coroutines support for Room
     implementation(libs.androidx.room.ktx)
+
+    // coil
+    implementation(libs.coil.compose)
+
     ksp(libs.androidx.room.compiler)
 }
