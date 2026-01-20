@@ -16,7 +16,7 @@ data class Movie(
     val popularity: Double,
 
     @SerialName("poster_path")
-    val posterPath: String,
+    val movieImg: String,
 
     val release_date: String,
     val title: String,
