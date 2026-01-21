@@ -1,7 +1,5 @@
 package com.oxygenik.moviz.screens
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -9,7 +7,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -32,9 +29,6 @@ fun MovieItem(movie: Movie) {
             .fillMaxWidth()
             .padding(5.dp)
     ) {
-        // https://media.themoviedb.org/t/p/w600_and_h900_face/6igvNs5VJB4ryBLgjjXksDVs0Fm.jpg
-        // https://image.tmdb.org/t/p/w500/6igvNs5VJB4ryBLgjjXksDVs0Fm.jpg
-        // model = "https://media.themoviedb.org/t/p/w600/${movie.posterPath}",
         AsyncImage(
             model = "https://image.tmdb.org/t/p/w500/${movie.posterPath}",
             contentDescription = "Movie desc",
@@ -43,13 +37,6 @@ fun MovieItem(movie: Movie) {
                 .width(200.dp)
                 .height(250.dp)
         )
-
-//        Box(
-//            modifier = Modifier
-//                .width(200.dp)
-//                .height(250.dp)
-//                .background(Color.Black)
-//        )
 
         Spacer(modifier = Modifier.width(10.dp))
 
@@ -61,9 +48,9 @@ fun MovieItem(movie: Movie) {
             )
             Spacer(modifier = Modifier.height(10.dp))
             Text(
-                text = "${movie.overview.take(110)} ...",
+                text = movieLengthShorten(movie.overview),
                 textAlign = TextAlign.Left,
-                fontSize = 17.sp,
+                fontSize = 13.sp,
                 fontWeight = FontWeight.Normal,
                 color = Color.Gray
             )
@@ -73,6 +60,9 @@ fun MovieItem(movie: Movie) {
     }
 }
 
+fun movieLengthShorten(text: String): String {
+    return if (text.length > 200) "${text.take(200)} ..." else text
+}
 
 @Composable
 @Preview(
