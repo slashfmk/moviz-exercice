@@ -24,6 +24,10 @@ object RetrofitInstance {
 
 
     val api: ApiService by lazy {
+        /**
+         * by lazy: delays the initialization
+         * of the property until it is first accessed.
+         */
         val retrofit = Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(json.asConverterFactory("application/json".toMediaType()))

@@ -1,3 +1,5 @@
+import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
@@ -19,6 +21,16 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        // Apikey retrieval from the local.properties
+        val tmbApiKey = gradleLocalProperties(rootDir, providers).getProperty("TMDB_API_KEY") ?: ""
+
+        buildConfigField(
+            "String",
+            "TMDB_API_KEY",
+            "\"$tmbApiKey\""
+        )
+
     }
 
     buildTypes {
@@ -34,9 +46,12 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
+
     buildFeatures {
         compose = true
+        buildConfig = true
     }
+
 }
 
 configurations.all {
