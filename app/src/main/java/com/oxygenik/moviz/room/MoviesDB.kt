@@ -15,6 +15,9 @@ import kotlin.concurrent.Volatile
 @Database(entities = [Movie::class], version = 1)
 abstract class MoviesDB : RoomDatabase() {
 
+    // DAO
+    abstract val moviesDao: MovieDAO
+
     /*
      * Singleton Design pattern
      * Only one instance of the DB exists, avoiding

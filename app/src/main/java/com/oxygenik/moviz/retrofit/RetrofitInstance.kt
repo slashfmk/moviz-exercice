@@ -6,7 +6,7 @@ import okhttp3.MediaType.Companion.toMediaType
 import retrofit2.Retrofit
 
 
-/*
+/**
  * A singleton object that provides a centralized
  * & consistent configuration
  * for making network request using retrofit

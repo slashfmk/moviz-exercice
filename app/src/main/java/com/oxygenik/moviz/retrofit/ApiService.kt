@@ -4,7 +4,7 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 
-/*
+/**
  * Here is where you define the endpoints of your web service
  * Each method  represents an API call
  */

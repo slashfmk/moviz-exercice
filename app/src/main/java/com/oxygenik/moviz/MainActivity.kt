@@ -13,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.ViewModelProvider
 import com.oxygenik.moviz.repositories.Repository
+import com.oxygenik.moviz.room.MoviesDB
 import com.oxygenik.moviz.screens.HomeScreen
 import com.oxygenik.moviz.ui.theme.MovizTheme
 import com.oxygenik.moviz.viewModels.MovieViewModel
@@ -23,12 +24,18 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
-        val repository = Repository()
+        // Room
+        val database = MoviesDB.getInstance(applicationContext)
+
+        // Repository
+        val repository = Repository(applicationContext)
+
+        // Instantiate the viewModel
         val viewModelFactory = MovieViewModelFactory(repository = repository)
         val movieViewModel = ViewModelProvider(
             owner = this, viewModelFactory
         )[MovieViewModel::class.java]
-        
+
         setContent {
             MovizTheme {
                 HomeScreen(viewModel = movieViewModel)

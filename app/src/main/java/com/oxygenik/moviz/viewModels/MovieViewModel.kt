@@ -31,6 +31,10 @@ class MovieViewModel(repository: Repository) : ViewModel() {
     var moviesFromApi by mutableStateOf<List<Movie>>(emptyList())
         private set
 
+    // The Offline Movies
+    var moviesFromRoomDB by mutableStateOf<List<Movie>>(emptyList())
+        private set
+
     /*
      * View Model Scope launch a coroutine in the scope of ViewModel,
      * which means that coroutine will be tied to the lifecycle of the viewModel
@@ -39,10 +43,16 @@ class MovieViewModel(repository: Repository) : ViewModel() {
         viewModelScope.launch {
             try {
                 moviesFromApi = repository.getPopularMoviesFromOnlineApi(BuildConfig.TMDB_API_KEY)
+
+                // insert Movies into ROOM DB
+                repository.insertMoviesIntoDB(moviesFromApi)
+
                 // Assigning 'movies' to MoviesFromApi
                 movies = moviesFromApi
             } catch (e: Exception) {
-                // Fetch the data from ROOM DB
+                // Fetch the data from ROOM DB in case of a network failure
+                moviesFromRoomDB = repository.getMoviesFromDB()
+                movies = moviesFromRoomDB
             }
         }
 
