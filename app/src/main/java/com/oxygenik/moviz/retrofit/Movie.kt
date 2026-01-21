@@ -5,6 +5,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class Movie(
+    val id: Int,
     val adult: Boolean,
 
     @SerialName("original_language")

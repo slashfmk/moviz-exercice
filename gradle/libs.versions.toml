@@ -2,6 +2,7 @@
 agp = "9.0.0"
 artifactid = "version"
 coilCompose = "3.3.0"
+coilOkhttp = "3.0.4"
 coreKtx = "1.17.0"
 gson = "2.13.2"
 junit = "4.13.2"
@@ -27,6 +28,7 @@ androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "roomKtx"
 androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "roomKtx" }
 artifactid = { module = "groupId:artifactId", version.ref = "artifactid" }
 coil-compose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coilCompose" }
+coil-okhttp = { module = "io.coil-kt.coil3:coil-okhttp", version.ref = "coilOkhttp" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
